@@ -1,0 +1,5 @@
+abrir o arquivo de configuracao na Home
+emacs .emacs.d/init.el
+
+localizacao_no_linux na home em : 
+.emacs.d/

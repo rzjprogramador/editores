@@ -1,0 +1,77 @@
+;; Remove welcome message
+(setq inhibit-startup-message t)
+
+;; Remove menus
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+
+
+;; resize easy - nossos atalhos
+
+(global-set-key (kbd "M-C-<right>") 'shrink-window-horizontally)
+(global-set-key (kbd "M-C-<left>") 'enlarge-window-horizontally)
+(global-set-key (kbd "M-C-<up>") 'enlarge-window)
+(global-set-key (kbd "M-C-<down>") 'shrink-window)
+
+;; MELPA
+;;
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+(package-initialize) ; inicializar pacotes
+(unless (package-installed-p 'use-package) 
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(use-package try 
+  :ensure t) ; instalou pacote try , para testarpacotes  antes de baixar
+
+(use-package which-key
+  :ensure t
+  :config
+        (progn
+	  (which-key-setup-side-window-right-bottom)
+	  (wich-key-mode))
+
+	(use-package auto-complete
+	  :ensure t
+	  :init
+	  (progn
+	    (ac-config-default)
+	    (global-auto-complete-mode t)))
+
+	
+; neotree
+	(use-package neotree
+	  :ensure t
+	  :bind (("C-b" . 'neotree-toggle)))
+					; bind criando atalho para abrir sidebar
+	
+	(use-package ace-window
+	  :ensure t
+	  :bind (("C-x o" . ace-window)))
+	
+	 
+;; ergoemacs - teclado ergonometro
+	 (require 'ergoemacs-mode
+		  :ensure t)
+(setq ergoemacs-theme nil)
+(setq ergoemacs-keyboard-layout "us")
+(ergoemacs-mode 1)
+
+
+
+
+;CODIGO AUTOMATICO MELPA
+(custom-set-variables	
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+'(package-selected-packages (quote (use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
